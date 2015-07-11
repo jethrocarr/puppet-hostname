@@ -19,7 +19,7 @@ class hostname (
     group => root,
     mode => 644,
     content => "$set_hostname\n",
-    notify => Exec["set-hostname"],
+    notify => Exec["apply_hostname"],
   }
 
   # Set the hostname
