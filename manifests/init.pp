@@ -31,8 +31,10 @@ class hostname (
   # Optional Reloads. We iterate over the array and then for each provided
   # service, we setup a notification relationship with the change hostname
   # command.
-  $reloads.each |String $service| {
-    Exec['apply_hostname'] ~> Service[$service]
+  if ($reloads) {
+    $reloads.each |String $service| {
+      Exec['apply_hostname'] ~> Service[$service]
+    }
   }
 }
 
