@@ -23,7 +23,12 @@ once and have a nice tidy module for it. :-)
 Set the desired domain name via Hiera, and it will be appended
 
     hostname:domain: example.com
-    hostname:reloads: rsyslog
+
+You can also define an array of services to reload after the hostname change
+with:
+
+    hostname:reloads:
+      - rsyslog
 
 Include the module in the usual fashion, ideally somewhere like your SOE module
 so your hostname is set before the installation of most services.
