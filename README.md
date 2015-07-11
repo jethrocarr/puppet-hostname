@@ -36,8 +36,22 @@ so your hostname is set before the installation of most services.
 
 # Requirements
 
-No module requirements, however requires Puppet Future Parser as introduced in
-Puppet version 3.7.5 and shipped as standard in Puppet 4.x.
+No additional modules are required to make hostnames module work.
+
+However, for the reloads feature to work, you must be on either Puppet 4.x or
+enable the future parser in Puppet versions 3.7.5 and above, otherwise you will
+see an error like this:
+
+    Error: Syntax error at '.'; expected '}' at ... modules/hostname/manifests/init.pp:34 on node myhost
+
+If you are using Puppet 4.x, then you don't need to do anything. If you're using
+Puppet 3.7.5+, then you need to enable the future parser by either:
+
+* Setting parser = future in your puppet.conf file
+* or: Adding the command line switch --parser=future when you call Puppet.
+
+If you're on anything older than Puppet 3.7.5, then you're out of luck.
+
 
 
 # Development
