@@ -22,19 +22,19 @@ once and have a nice tidy module for it. :-)
 
 Set the desired domain name via Hiera, and it will be appended:
 
-    hostname:domain: example.com
+    hostname::domain: example.com
 
 You can also define an array of services to reload after the hostname change:
 (just remember that the services must be defined in Puppet first)
 
-    hostname:reloads:
+    hostname::reloads:
       - rsyslog
 
 If you wish to override the default system hostname entirely, you can set both
 the hostname and the domain, eg:
 
-    hostname:hostname: host1
-    hostname:domain: example.com
+    hostname::hostname: host1
+    hostname::domain: example.com
 
 
 Include the module in the usual fashion, ideally somewhere like your SOE module
