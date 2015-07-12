@@ -7,26 +7,39 @@ class hostname (
 
   # Generate hostname
   if ($domain) {
-    $set_hostname = "${hostname}.${domain}"
+    $set_fqdn = "${hostname}.${domain}"
   } else {
     # No domain provided, won't be a FQDN
-    $set_hostname = $hostname
+    $set_fqdn = $hostname
   }
 
   # Write hostname to config
   file { "/etc/hostname":
-    ensure => present,
-    owner => root,
-    group => root,
-    mode => 644,
-    content => "$set_hostname\n",
-    notify => Exec["apply_hostname"],
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => "$set_fqdn\n",
+    notify  => Exec["apply_hostname"],
   }
 
   # Set the hostname
   exec { "apply_hostname":
     command => "/bin/hostname -F /etc/hostname",
     unless  => "/usr/bin/test `hostname` = `/bin/cat /etc/hostname`",
+  }
+
+  # Make sure the hosts file has an entry
+  host { 'default hostname v4':
+    name          => $set_fqdn,
+    host_aliases  => $hostname,
+    ip            => '127.0.0.1',
+  }
+
+  host { 'default hostname v6':
+    name          => $set_fqdn,
+    host_aliases  => $hostname,
+    ip            => '::1',
   }
 
   # Optional Reloads. We iterate over the array and then for each provided
