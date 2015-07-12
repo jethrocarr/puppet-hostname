@@ -1,15 +1,16 @@
 # Set the system hostname
 class hostname (
+  $hostname           = $hostname::params::hostname,
   $domain             = $hostname::params::domain,
   $reloads            = $hostname::params::reloads,
   ) inherits hostname::params {
 
   # Generate hostname
   if ($domain) {
-    $set_hostname = "${::hostname}.${domain}"
+    $set_hostname = "${hostname}.${domain}"
   } else {
-    # No FDQN provided, leave hostname as-is.
-    $set_hostname = $::hostname
+    # No domain provided, won't be a FQDN
+    $set_hostname = $hostname
   }
 
   # Write hostname to config

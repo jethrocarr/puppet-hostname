@@ -30,6 +30,13 @@ with:
     hostname:reloads:
       - rsyslog
 
+If you wish to override the default system hostname entirely, you can set both
+the hostname and the domain, eg:
+
+    hostname:hostname: host1
+    hostname:domain: example.com
+
+
 Include the module in the usual fashion, ideally somewhere like your SOE module
 so your hostname is set before the installation of most services.
 
