@@ -31,11 +31,18 @@ class hostname (
   # Optional Reloads. We iterate over the array and then for each provided
   # service, we setup a notification relationship with the change hostname
   # command.
-  if ($reloads) {
-    $reloads.each |String $service| {
-      Exec['apply_hostname'] ~> Service[$service]
-    }
+  #
+  # Note we use a old style interation (pre future parser) to ensure
+  # compatibility with Puppet 3 systems. In future when 4.x+ is standard we
+  # could rewite with a newer loop approach as per:
+  # https://docs.puppetlabs.com/puppet/latest/reference/lang_iteration.html
+
+  define hostname::reloads ($service = $title) {
+    Exec['apply_hostname'] ~> Service[$service]
   }
+
+  hostname::reloads { $reloads: }
+
 }
 
 # vi:smartindent:tabstop=2:shiftwidth=2:expandtab:
