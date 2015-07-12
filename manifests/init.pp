@@ -31,16 +31,20 @@ class hostname (
 
   # Make sure the hosts file has an entry
   host { 'default hostname v4':
+    ensure        => present,
     name          => $set_fqdn,
     host_aliases  => $hostname,
     ip            => '127.0.0.1',
   }
 
-  host { 'default hostname v6':
-    name          => $set_fqdn,
-    host_aliases  => $hostname,
-    ip            => '::1',
-  }
+# TODO: This won't work yet thanks to an ancient puppet bug:
+# https://projects.puppetlabs.com/issues/8940
+#  host { 'default hostname v6':
+#    ensure       => present,
+#    name         => $set_fqdn,
+#    host_aliases => $hostname,
+#    ip           => '::1',
+#  }
 
   # Optional Reloads. We iterate over the array and then for each provided
   # service, we setup a notification relationship with the change hostname
