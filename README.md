@@ -20,12 +20,12 @@ once and have a nice tidy module for it. :-)
 
 # Usage
 
-Set the desired domain name via Hiera, and it will be appended
+Set the desired domain name via Hiera, and it will be appended:
 
     hostname:domain: example.com
 
-You can also define an array of services to reload after the hostname change
-with:
+You can also define an array of services to reload after the hostname change:
+(just remember that the services must be defined in Puppet first)
 
     hostname:reloads:
       - rsyslog
