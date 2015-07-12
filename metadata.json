@@ -6,6 +6,7 @@
   "license": "Apache 2.0",
   "source": "https://github.com/jethrocarr/puppet-hostname",
   "project_page": "https://github.com/jethrocarr/puppet-hostname",
-  "issues_url": "https://github.com/jethrocarr/puppet-hostname/issues"
+  "issues_url": "https://github.com/jethrocarr/puppet-hostname/issues",
+  "dependencies" : []
 }
 
