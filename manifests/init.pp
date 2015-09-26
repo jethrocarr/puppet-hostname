@@ -17,7 +17,10 @@ class hostname (
   file { "/etc/hostname":
     ensure  => present,
     owner   => 'root',
-    group   => 'root',
+    group  => $::kernel ? {
+      'FreeBSD' => 'wheel',
+      default   => 'root',
+    },
     mode    => '0644',
     content => "$set_fqdn\n",
     notify  => Exec["apply_hostname"],
