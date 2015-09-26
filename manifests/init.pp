@@ -59,7 +59,7 @@ class hostname (
     Exec['apply_hostname'] ~> Service[$service]
   }
 
-  hostname::reloads { $reloads: }
+  ::hostname::reloads { $reloads: }
 
 }
 
