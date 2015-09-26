@@ -55,7 +55,7 @@ class hostname (
   # could rewite with a newer loop approach as per:
   # https://docs.puppetlabs.com/puppet/latest/reference/lang_iteration.html
 
-  define hostname::reloads ($service = $title) {
+  define reloads ($service = $title) {
     Exec['apply_hostname'] ~> Service[$service]
   }
 
