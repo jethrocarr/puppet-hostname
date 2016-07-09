@@ -2,6 +2,7 @@
 class hostname (
   $hostname           = $hostname::params::hostname,
   $domain             = $hostname::params::domain,
+  $ip                 = $hostname::params::ip,
   $reloads            = $hostname::params::reloads,
   ) inherits hostname::params {
 
@@ -37,7 +38,7 @@ class hostname (
     ensure        => present,
     name          => $set_fqdn,
     host_aliases  => $hostname,
-    ip            => '127.0.0.1',
+    ip            => $ip,
   }
 
 # TODO: This won't work yet thanks to an ancient puppet bug:
