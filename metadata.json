@@ -1,6 +1,6 @@
 {
   "name": "jethrocarr-hostname",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "jethrocarr",
   "summary": "Small Puppet module to easily set system hostname based on instance ID",
   "license": "Apache 2.0",
