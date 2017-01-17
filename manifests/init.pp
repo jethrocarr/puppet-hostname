@@ -23,7 +23,7 @@ class hostname (
       default   => 'root',
     },
     mode    => '0644',
-    content => "$set_fqdn\n",
+    content => "$hostname\n",
     notify  => Exec["apply_hostname"],
   }
 
